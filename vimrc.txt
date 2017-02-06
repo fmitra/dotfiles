@@ -45,6 +45,9 @@ nnoremap <C-H> <C-W><C-H>
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
 
+" Buffer swapping
+map <C-b> :bn<CR>
+
 let g:airline#extensions#tabline#enabled = 1
 
 let python_highlight_all = 1
