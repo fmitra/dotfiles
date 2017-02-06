@@ -23,6 +23,7 @@ set encoding=utf-8
 set t_Co=256
 set nu
 colorscheme zenburn
+set cursorline
 
 set expandtab
 set showmatch
