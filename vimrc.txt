@@ -1,0 +1,50 @@
+set nocompatible
+filetype off
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Plugins
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'jnurmine/Zenburn'
+Plugin 'vim-airline/vim-airline'
+Plugin 'fatih/vim-go'
+
+call vundle#end()
+
+" Syntax settings
+filetype plugin indent on
+syntax on
+set encoding=utf-8
+set t_Co=256
+set nu
+colorscheme zenburn
+
+set expandtab
+set showmatch
+set hlsearch
+set ignorecase
+
+au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+au BufNewFile, BufRead *.js set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+au BufNewFile, BufRead *.html, *.css set tabstop=2 softtabstop=2 shiftwidth=2
+
+" Disable Go autoformating on save
+let g:go_fmt_autosave = 0
+
+" Split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Nerd tree
+map <C-n> :NERDTreeToggle<CR>
+
+let g:airline#extensions#tabline#enabled = 1
+
+let python_highlight_all = 1

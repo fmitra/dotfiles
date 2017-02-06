@@ -1,0 +1,28 @@
+# Elastic Beanstalk Files
+######################
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+# Application files
+######################
+*.pyc
+.webassets-cache
+__pycache__
+.sass-cache
+node_modules/
+dump.rdb
+www/uploads/
+celerybeat-schedule.db
+
+# OS generated files
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea
