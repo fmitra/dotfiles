@@ -26,3 +26,4 @@ celerybeat-schedule.db
 ehthumbs.db
 Thumbs.db
 .idea
+.swp
