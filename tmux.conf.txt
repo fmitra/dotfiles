@@ -41,6 +41,10 @@ set -g status-fg white
 set -g status-bg colour200
 set -g pane-active-border-bg colour175
 
+# enable pane resizing via mouse
+set -g mode-mouse on
+set -g mouse-resize-pane on
+
 # Alignment for status bar
 set-option -g status-justify centre
 
