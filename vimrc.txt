@@ -12,8 +12,13 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'vim-airline/vim-airline'
 Plugin 'fatih/vim-go'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
+
+" Ag search (silver searcher plugin)
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Syntax settings
 filetype plugin indent on
