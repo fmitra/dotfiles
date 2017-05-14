@@ -39,6 +39,9 @@ set ignorecase
 autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
 autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+autocmd BufNewFile,BufRead *.hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+autocmd BufNewFile,BufRead *.esj setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
 
 " Remove trailing whitespace
 autocmd BufWritePre *.py, *.js, *.jsx normal m`:%s/\s\+$//e
