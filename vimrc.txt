@@ -14,6 +14,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 
@@ -34,9 +36,12 @@ set showmatch
 set hlsearch
 set ignorecase
 
-au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-au BufNewFile, BufRead *.js set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
-au BufNewFile, BufRead *.html, *.css set tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+
+" Remove trailing whitespace
+autocmd BufWritePre *.py, *.js, *.jsx normal m`:%s/\s\+$//e
 
 " Disable Go autoformating on save
 let g:go_fmt_autosave = 0
