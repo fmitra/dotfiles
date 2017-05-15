@@ -8,7 +8,7 @@ call vundle#begin()
 " Plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'vim-airline/vim-airline'
 Plugin 'fatih/vim-go'
@@ -42,6 +42,7 @@ autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 e
 autocmd BufNewFile,BufRead *.hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
 autocmd BufNewFile,BufRead *.esj setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
 autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
+autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent 
 
 " Remove trailing whitespace
 autocmd BufWritePre *.py, *.js, *.jsx normal m`:%s/\s\+$//e
@@ -58,6 +59,10 @@ nnoremap <C-H> <C-W><C-H>
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=1
+
+" FZF and Ag
+map <C-p> :FZF<CR>
+map <C-f> :Ag<CR>
 
 " Buffer swapping
 map <C-b> :bn<CR>
