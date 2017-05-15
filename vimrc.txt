@@ -8,7 +8,6 @@ call vundle#begin()
 " Plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'vim-airline/vim-airline'
 Plugin 'fatih/vim-go'
@@ -65,7 +64,8 @@ map <C-p> :FZF<CR>
 map <C-f> :Ag<CR>
 
 " Buffer swapping
-map <C-b> :bn<CR>
+map <Tab> :bn<CR>
+map <S-Tab> :bn<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 
