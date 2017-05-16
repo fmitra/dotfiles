@@ -15,8 +15,9 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'qpkorr/vim-bufkill'
+"Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 
@@ -52,10 +53,10 @@ autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 
 let g:go_fmt_autosave = 0
 
 " Split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
@@ -68,7 +69,7 @@ map <C-f> :Ag<CR>
 " Buffer swapping
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
-map <C-c> :BD<CR>
+"map <C-c> :BD<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 
