@@ -75,6 +75,12 @@ let g:airline#extensions#tabline#enabled = 1
 
 let python_highlight_all = 1
 
+set clipboard=unnamed
+:set backspace=indent,eol,start
+
+" Treat underscores as a word
+set iskeyword-=_
+
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
