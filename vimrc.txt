@@ -20,6 +20,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()
 
@@ -47,6 +48,7 @@ autocmd BufNewFile,BufRead *.hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 e
 autocmd BufNewFile,BufRead *.esj setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+autocmd BufNewFile,BufRead *.css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 
 " Disable Go autoformating on save
@@ -88,3 +90,16 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+map <C-w> :SyntasticCheck<CR>
+let g:syntastic_mode_map = {"mode": "passive"}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_js_checkers = ['eslint']
