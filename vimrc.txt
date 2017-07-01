@@ -42,7 +42,7 @@ set hlsearch
 set ignorecase
 
 autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+autocmd BufNewFile,BufRead *.go setlocal tabstop=8 softtabstop=8 shiftwidth=8 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.hbs setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
@@ -98,6 +98,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 map <C-w> :SyntasticCheck<CR>
+map <C-e> :SyntasticReset<CR>
 let g:syntastic_mode_map = {"mode": "passive"}
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
