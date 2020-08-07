@@ -22,6 +22,7 @@ Plugin 'qpkorr/vim-bufkill'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
