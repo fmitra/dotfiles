@@ -43,10 +43,5 @@ prefix + I
 
 ### Notes
 
-`ag` supports an `.ignore` file where we can specify directories/files to ignore
-in the same format as a `.gitignore`. If you create one, update `.vimrc` to include
-it.
-
-```
-let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
-```
+`ag` supports an `.aignore` file where we can specify directories/files to ignore
+in the same format as a `.gitignore`. Create it at `~/.aignore` for universal usage.
