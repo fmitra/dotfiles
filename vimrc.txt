@@ -27,6 +27,10 @@ Plugin 'zivyangll/git-blame.vim'
 
 call vundle#end()
 
+" Code folding
+set foldmethod=syntax
+set foldlevelstart=20
+
 " Ag search (silver searcher plugin)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
