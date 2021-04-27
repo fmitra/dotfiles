@@ -34,6 +34,10 @@ set foldlevelstart=20
 " Ag search (silver searcher plugin)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" Allow Ag search into subdirecotyr
+" :Rag my-string my-dir/foo/bar/
+command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Syntax settings
 filetype plugin indent on
 syntax on
