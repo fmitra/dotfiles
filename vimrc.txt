@@ -80,7 +80,16 @@ nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
+" Open current file \v
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
+let NERDTreeMinimalUI=1
+let NERDTreeWinSize=55
+
+" https://github.com/preservim/nerdtree
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " FZF and Ag
 map <C-p> :FZF<CR>
