@@ -85,6 +85,7 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 let NERDTreeMinimalUI=1
 let NERDTreeWinSize=55
+let NERDTreeShowHidden=1
 
 " https://github.com/preservim/nerdtree
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
