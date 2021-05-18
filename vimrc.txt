@@ -132,3 +132,6 @@ let g:syntastic_auto_loc_list = 1
 
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_js_checkers = ['eslint']
+
+" yank file path and line number (\y)
+nnoremap <silent> <Leader>y :let @+=expand("%") . ':' . line(".")<CR>
