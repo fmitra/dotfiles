@@ -137,7 +137,9 @@ let g:syntastic_js_checkers = ['eslint']
 nnoremap <silent> <Leader>y :let @+=expand("%") . ':' . line(".")<CR>
 
 " resize current buffer by +/- 10
+" resize horizontal
 nnoremap <Leader>[ :vertical resize -10<cr>
 nnoremap <Leader>] :vertical resize +10<cr>
+" resize vertical
 nnoremap <Leader>- :resize -10<cr>
-nnoremap <Leader>+ :resize +10<cr>
+nnoremap <Leader>= :resize +10<cr>
