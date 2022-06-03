@@ -44,6 +44,7 @@ set -g window-active-style 'fg=colour250,bg=black'
 set -g status-right '#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)'
 
 # Set colors for status bar and pane highlights
+# Full list of colors: https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
 # Note older versions use: set -g pane-active-border-bg colour175
 # 200 / 175 pink
 # 196 / 160 red
