@@ -66,8 +66,10 @@ autocmd BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 
 autocmd BufNewFile,BufRead *.css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 
-" Disable Go autoformating on save
+" vim-go settings (check :help vim-go for more)
+let g:go_fmt_command = 'goimports'
 let g:go_fmt_autosave = 0
+let g:go_imports_autosave = 0
 
 " Split navigations
 "nnoremap <C-J> <C-W><C-J>
