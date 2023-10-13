@@ -27,6 +27,18 @@ vim
 :PluginInstall
 ```
 
+### NVim
+
+```
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+nvim
+:PlugInstall
+```
+
+If you want to use nvim in favor of vim permanently, add `alias vim="nvim"` to bash/zshrc profile.
+
 ### Tmux
 
 ```
