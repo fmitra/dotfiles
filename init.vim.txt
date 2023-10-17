@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'qpkorr/vim-bufkill'
 Plug 'dcampos/nvim-snippy'
 Plug 'dcampos/cmp-snippy'
 Plug 'hrsh7th/cmp-buffer'
@@ -107,7 +108,7 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4 smarttab autoindent
+autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4 smarttab autoindent noexpandtab
 autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
@@ -123,7 +124,7 @@ autocmd BufNewFile,BufRead *.styl setlocal tabstop=2 softtabstop=2 shiftwidth=2 
 " Buffer swapping
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
-map <C-c> :bd<CR>
+map <C-c> :BD<CR>
 
 lua << EOF
 local opts = { noremap=true, silent=true, buffer=bufnr }
