@@ -17,7 +17,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ojroques/vim-oscyank'
 Plug 'vim-syntastic/syntastic'
-Plug 'zivyangll/git-blame.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " FZF and Ag
@@ -86,9 +86,6 @@ nnoremap <Leader>] :vertical resize +10<cr>
 " resize veritical
 nnoremap <Leader>- :resize -10<cr>
 nnoremap <Leader>= :resize +10<cr>
-
-" Git Blame (\s)
-nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 " Hack to get custom path from lua function to execute with \y
 noremap <Leader>y :Path<CR>
