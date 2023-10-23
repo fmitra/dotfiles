@@ -18,6 +18,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ojroques/vim-oscyank'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
+Plug 'folke/trouble.nvim'
 call plug#end()
 
 " FZF and Ag
@@ -197,4 +198,7 @@ vim.api.nvim_create_user_command("Path", function()
         vim.fn.setreg("+", out)
         vim.notify('Copied "' .. out .. '" to the clipboard!')
 end, {})
+
+-- Access LSP diagnostics with `:Trouble`
+require("trouble").setup {}
 EOF
