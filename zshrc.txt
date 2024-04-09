@@ -1,5 +1,17 @@
+# ==========
+# Yuibkey GPG signing and SSH support
+# ==========
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 alias gpg-restart="gpgconf --kill gpg-agent && gpgconf --launch gpg-agent"
 
+# ==========
+# Editing
+# ==========
+alias vim="nvim"
+alias vi="nvim"
+
+# ==========
+# File navigation
+# ==========
 eval "$(fzf --zsh)"
