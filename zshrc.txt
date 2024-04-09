@@ -1,0 +1,5 @@
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+alias gpg-restart="gpgconf --kill gpg-agent && gpgconf --launch gpg-agent"
+
+eval "$(fzf --zsh)"
