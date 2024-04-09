@@ -11,17 +11,23 @@ Basic configs for tmux and vim
 
 ## Getting Started (OSX)
 
-Follow instructions for FZF and Silver Searcher and then set up vim and copy configs.
+### New Machine
 
 ```
-mkdir ~/.vim/backup/
-mkdir ~/.vim/swp/
-source ./install
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+./configure.sh
 ```
 
 ### Vim
 
 ```
+mkdir ~/.vim/backup/
+mkdir ~/.vim/swp/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim
 :PluginInstall
