@@ -9,6 +9,7 @@ brew install the_silver_searcher
 brew install tmux
 brew install nvim
 brew install go
+brew install gopls
 brew install pyenv
 brew install pyenv-virtualenv
 brew install gpg-suite

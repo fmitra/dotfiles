@@ -90,7 +90,8 @@ nnoremap <Leader>- :resize -10<cr>
 nnoremap <Leader>= :resize +10<cr>
 
 " Hack to get custom path from lua function to execute with \y
-noremap <Leader>y :Path<CR>
+noremap <Leader>y :FileLineNum<CR>
+noremap <Leader>m :Path<CR>
 
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
@@ -191,13 +192,20 @@ require("fidget").setup {
   -- options
 }
 
--- Copy file path and line number with `:Path`
-vim.api.nvim_create_user_command("Path", function()
+-- Copy file path and line number with `:FileLineNum`
+vim.api.nvim_create_user_command("FileLineNum", function()
         local path = vim.fn.expand("%")
         local line = vim.fn.line(".")
         local out = path .. ":" .. line
         vim.fn.setreg("+", out)
         vim.notify('Copied "' .. out .. '" to the clipboard!')
+end, {})
+
+-- Copy file path and without number with `:Path`
+vim.api.nvim_create_user_command("Path", function()
+        local path = vim.fn.expand("%:.:h")
+        vim.fn.setreg("+", path)
+        vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
 
 -- Access LSP diagnostics with `:Trouble`

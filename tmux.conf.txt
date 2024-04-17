@@ -58,6 +58,8 @@ set -g pane-border-style bg=colour236
 # Alignment for status bar
 set-option -g status-justify centre
 
+bind a send-prefix
+
 # Make new panes default to current workiing dir
 bind c new-window -c "#{pane_current_path}"
 bind-key '"' split-window -c '#{pane_current_path}'
