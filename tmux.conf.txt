@@ -5,8 +5,8 @@
 
 # Resize panes with vim navigation keys by
 # increments of 5 with Option+Direction without
-# prefix. Note that in iTem2
-# this requires you to map Option to Meta or Esc+
+# prefix. Note that in iTerm2
+# this requires you to map Option to Esc+
 # under preferences > profiles > keys
 bind -n M-k resize-pane -U 5
 bind -n M-j resize-pane -D 5

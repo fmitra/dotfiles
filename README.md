@@ -60,8 +60,3 @@ Install plugins
 ```
 prefix + I
 ```
-
-### Notes
-
-`ag` supports an `.aignore` file where we can specify directories/files to ignore
-in the same format as a `.gitignore`. Create it at `~/.aignore` for universal usage.
