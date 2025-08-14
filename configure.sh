@@ -19,8 +19,8 @@ echo "============================"
 echo "Set up development environmenet"
 echo "============================"
 echo ""
-cp tmux.conf.txt ~/.tmux.conf
-cp init.vim.txt ~/.config/nvim/init.vim
+cp tmux.conf ~/.tmux.conf
+cp init.vim ~/.config/nvim/init.vim
 cp zshrc.txt ~/.zshrc
 
 echo "============================"
