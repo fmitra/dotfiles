@@ -74,10 +74,6 @@ map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
 map <C-c> :BD<CR>
 
-" Language server is configured through gopls, invalid
-" configuration from ale is causing eror noise
-let g:ale_disable_lsp = 1
-
 " =====================
 " FZF and Ag
 " =====================
@@ -251,7 +247,6 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').gopls.setup {
   cmd = {'gopls', '-remote=auto'},
   on_attach = on_attach,
-  settings = {},
   capabilities = lsp_capabilities,
   init_options = {},
   flags = {
