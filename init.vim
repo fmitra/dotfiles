@@ -21,6 +21,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'folke/trouble.nvim'
 Plug 'MeanderingProgrammer/render-markdown.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'folke/lazydev.nvim'
+Plug 'leoluz/nvim-dap-go'
 " Common dependency across multiple plugins
 Plug 'nvim-lua/plenary.nvim'
 
@@ -206,6 +211,43 @@ vim.api.nvim_create_user_command("Path", function()
         vim.fn.setreg("+", path)
         vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+
+-- =====================
+-- NVIM DAP
+-- =====================
+-- Usage
+-- DapNew
+-- DapTerminate
+
+-- <C-b> or DapToggleBreakpoint
+-- DapClearBreakpoints
+-- DapStepOver
+-- DapStepInto
+-- DapContinue
+require("dapui").setup()
+require("lazydev").setup({
+  library = { "nvim-dap-ui" },
+})
+require('dap-go').setup()
+
+-- Map DapToggleBreakpoint to ctrl+b
+vim.keymap.set('n', '<C-b>', function()
+  require('dap').toggle_breakpoint()
+end, { noremap = true, silent = true})
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
 
 -- =====================
 -- LSP Settings
