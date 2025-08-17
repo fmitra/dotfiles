@@ -198,18 +198,18 @@ require('render-markdown').setup()
 -- =====================
 -- Copy file path and line number with `:FileLineNum`
 vim.api.nvim_create_user_command("FileLineNum", function()
-        local path = vim.fn.expand("%")
-        local line = vim.fn.line(".")
-        local out = path .. ":" .. line
-        vim.fn.setreg("+", out)
-        vim.notify('Copied "' .. out .. '" to the clipboard!')
+  local path = vim.fn.expand("%")
+  local line = vim.fn.line(".")
+  local out = path .. ":" .. line
+  vim.fn.setreg("+", out)
+  vim.notify('Copied "' .. out .. '" to the clipboard!')
 end, {})
 
 -- Copy file path and without number with `:Path`
 vim.api.nvim_create_user_command("Path", function()
-        local path = vim.fn.expand("%:.:h")
-        vim.fn.setreg("+", path)
-        vim.notify('Copied "' .. path .. '" to the clipboard!')
+  local path = vim.fn.expand("%:.:h")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
 
 -- =====================
@@ -287,7 +287,7 @@ end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').gopls.setup {
-  cmd = {'gopls', '-remote=auto'},
+  cmd = {'gopls', '-remote=auto', '-rpc.trace', '-v'},
   on_attach = on_attach,
   capabilities = lsp_capabilities,
   init_options = {},
@@ -309,16 +309,16 @@ cmp.setup({
   snippet = {
     expand = function(args)
       require('snippy').expand_snippet(args.body)
-  end,
-},
+    end,
+  },
 
-mapping = cmp.mapping.preset.insert({
-  ["<c-space>"] = cmp.mapping.confirm({select = true}),
-  ["<s-tab>"] = cmp.mapping.select_prev_item(),
-  ["<tab>"] = cmp.mapping.select_next_item(),
-}),
+  mapping = cmp.mapping.preset.insert({
+    ["<c-space>"] = cmp.mapping.confirm({select = true}),
+    ["<s-tab>"] = cmp.mapping.select_prev_item(),
+    ["<tab>"] = cmp.mapping.select_next_item(),
+  }),
 
-sources = cmp.config.sources({
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'snippy' },
     { name = 'buffer' },
