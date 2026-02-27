@@ -25,7 +25,6 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'folke/lazydev.nvim'
-Plug 'leoluz/nvim-dap-go'
 " Common dependency across multiple plugins
 Plug 'nvim-lua/plenary.nvim'
 
@@ -228,7 +227,6 @@ require("dapui").setup()
 require("lazydev").setup({
   library = { "nvim-dap-ui" },
 })
-require('dap-go').setup()
 
 -- Map DapToggleBreakpoint to ctrl+b
 vim.keymap.set('n', '<C-b>', function()
@@ -236,6 +234,18 @@ vim.keymap.set('n', '<C-b>', function()
 end, { noremap = true, silent = true})
 
 local dap, dapui = require("dap"), require("dapui")
+dap.adapters.delve = {
+  type = 'server',
+  port = 2345
+}
+dap.configurations.go = {
+  {
+    type = 'delve',
+    request = 'attach',
+    name = 'Attach to Go',
+    mode = 'remote',
+  },
+}
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()
 end
