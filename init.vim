@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -11,7 +12,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'phha/zenburn.nvim'
-Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 Plug 'nathanaelkane/vim-indent-guides'
@@ -140,21 +140,6 @@ set ignorecase
 :highlight CursorLine ctermbg=16
 :highlight Visual ctermbg=16
 
-" Nerd tree
-map <C-n> :NERDTreeToggle<CR>
-
-" Open current file in Nerd tree \v
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-let NERDTreeShowLineNumbers=1
-let NERDTreeMinimalUI=1
-let NERDTreeWinSize=55
-let NERDTreeShowHidden=1
-
-" https://github.com/preservim/nerdtree
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
 " File tab defaults
 autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 autocmd BufNewFile,BufRead *.go setlocal tabstop=4 softtabstop=4 shiftwidth=4 smarttab autoindent noexpandtab
@@ -175,6 +160,36 @@ autocmd BufNewFile,BufRead *.vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 e
 " Lua Configs Start
 " =====================
 lua << EOF
+
+-- =====================
+-- NVIM Tree
+-- =====================
+-- Commands
+-- a: add directory or file
+-- c: copy
+-- p: paste
+-- m: bookmark
+-- o or <CR>: open
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>v', ':NvimTreeFindFile<CR>', { silent = true })
+require('nvim-tree').setup({
+  sort = {
+    sorter = 'case_sensitive',
+  },
+  view = {
+    width = 70,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 local opts = { noremap=true, silent=true, buffer=bufnr }
 
 -- Output errors to one-of quickfix or location list (uncomment whichever you need)
@@ -197,18 +212,18 @@ require('render-markdown').setup()
 -- =====================
 -- Copy file path and line number with `:FileLineNum`
 vim.api.nvim_create_user_command("FileLineNum", function()
-  local path = vim.fn.expand("%")
-  local line = vim.fn.line(".")
-  local out = path .. ":" .. line
-  vim.fn.setreg("+", out)
-  vim.notify('Copied "' .. out .. '" to the clipboard!')
+        local path = vim.fn.expand("%")
+        local line = vim.fn.line(".")
+        local out = path .. ":" .. line
+        vim.fn.setreg("+", out)
+        vim.notify('Copied "' .. out .. '" to the clipboard!')
 end, {})
 
 -- Copy file path and without number with `:Path`
 vim.api.nvim_create_user_command("Path", function()
-  local path = vim.fn.expand("%:.:h")
-  vim.fn.setreg("+", path)
-  vim.notify('Copied "' .. path .. '" to the clipboard!')
+        local path = vim.fn.expand("%:.:h")
+        vim.fn.setreg("+", path)
+        vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
 
 -- =====================
@@ -259,6 +274,45 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+-- Fix dap-ui bug with nvim-tree
+vim.api.nvim_create_augroup('DAP_UI_RESET', {clear = true})
+local bufferNames = {}
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+  group = 'DAP_UI_RESET',
+  pattern = '*',
+  callback = function()
+    local bufferName = vim.fn.expand('%')
+    if dap.session() and bufferName ~= 'DAP Watches' and bufferName ~= 'DAP Stacks' and bufferName ~= 'DAP Breakpoints' and bufferName ~= 'Dap Console' and not string.find(bufferName, '%[dap%-repl%-', 1) and bufferName ~= 'Dap Hover' and bufferName ~= '[dap-terminal] Launch file' then
+      table.insert(bufferNames, vim.fn.expand('%:p'))
+      print('Buffer Name - ' .. vim.fn.expand('%'))
+      dapui.open({reset = true})
+    end
+  end
+})
+vim.api.nvim_create_autocmd({'BufUnload', 'BufHidden'}, {
+  group = 'DAP_UI_RESET',
+  pattern = '*',
+  callback = function(args)
+    if dap.session() then
+      for i = 1, #bufferNames do
+        local index = -1
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if bufferNames[i] == vim.api.nvim_buf_get_name(buf) then
+            index = vim.api.nvim_buf_get_number(buf)
+            break
+          end
+        end
+        vim.schedule(function ()
+          if vim.fn.bufwinid(index) == -1 then
+            table.remove(bufferNames, i)
+            dapui.open({reset = true})
+          end
+        end)
+      end
+    end
+  end
+})
+
 -- =====================
 -- LSP Settings
 -- =====================
@@ -297,7 +351,7 @@ end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').gopls.setup {
-  cmd = {'gopls', '-remote=auto', '-rpc.trace', '-v'},
+  cmd = {'gopls', '-remote=auto'},
   on_attach = on_attach,
   capabilities = lsp_capabilities,
   init_options = {},
@@ -319,16 +373,16 @@ cmp.setup({
   snippet = {
     expand = function(args)
       require('snippy').expand_snippet(args.body)
-    end,
-  },
+  end,
+},
 
-  mapping = cmp.mapping.preset.insert({
-    ["<c-space>"] = cmp.mapping.confirm({select = true}),
-    ["<s-tab>"] = cmp.mapping.select_prev_item(),
-    ["<tab>"] = cmp.mapping.select_next_item(),
-  }),
+mapping = cmp.mapping.preset.insert({
+  ["<c-space>"] = cmp.mapping.confirm({select = true}),
+  ["<s-tab>"] = cmp.mapping.select_prev_item(),
+  ["<tab>"] = cmp.mapping.select_next_item(),
+}),
 
-  sources = cmp.config.sources({
+sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'snippy' },
     { name = 'buffer' },
