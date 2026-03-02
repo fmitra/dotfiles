@@ -181,6 +181,7 @@ require('nvim-tree').setup({
   },
   view = {
     width = 70,
+    relativenumber = true,
   },
   renderer = {
     group_empty = true,
