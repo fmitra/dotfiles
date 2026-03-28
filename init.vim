@@ -181,13 +181,13 @@ require('nvim-tree').setup({
   },
   view = {
     width = 70,
-    relativenumber = true,
+    number = true,
   },
   renderer = {
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 
