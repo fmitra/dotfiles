@@ -191,11 +191,9 @@ require('nvim-tree').setup({
   },
 })
 
-local opts = { noremap=true, silent=true, buffer=bufnr }
-
 -- Output errors to one-of quickfix or location list (uncomment whichever you need)
 -- Output errors to location list
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap=true, silent=true })
 -- Output errors to quickfix list
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setqflist()<CR>', opts)
 
@@ -324,6 +322,7 @@ vim.api.nvim_create_autocmd({'BufUnload', 'BufHidden'}, {
 -- `<space>D` get defintion
 -- `<space>F` formatter
 local on_attach = function(client, bufnr)
+  local opts = { noremap=true, silent=true, buffer=bufnr }
   local bufname = vim.api.nvim_buf_get_name(bufnr)
   -- Detach if buffer has no filename.
   if bufname == '' then
@@ -351,7 +350,7 @@ local on_attach = function(client, bufnr)
 end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig').gopls.setup {
+vim.lsp.config('gopls', {
   cmd = {'gopls', '-remote=auto'},
   on_attach = on_attach,
   capabilities = lsp_capabilities,
@@ -360,7 +359,8 @@ require('lspconfig').gopls.setup {
     -- Don't spam LSP with changes. Wait a second between each.
     debounce_text_changes = 1000,
   },
-}
+})
+vim.lsp.enable('gopls')
 
 -- =====================
 -- Code Complete
