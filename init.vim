@@ -354,7 +354,7 @@ vim.lsp.config('gopls', {
   cmd = {'gopls', '-remote=auto'},
   on_attach = on_attach,
   capabilities = lsp_capabilities,
-  init_options = {},
+  init_options = vim.empty_dict(),
   flags = {
     -- Don't spam LSP with changes. Wait a second between each.
     debounce_text_changes = 1000,
