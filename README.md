@@ -88,6 +88,28 @@ Example values
 .DS_Store
 ```
 
+Single command squash to main
+
+```
+git config --global alias.squash-to-main '!f() {
+  set -e;
+  FEATURE_BRANCH=$(git branch --show-current);
+
+  git add -A && \
+  (git diff --cached --quiet || git commit -m "${1:-Save work before squash merge}") && \
+
+  git checkout main && \
+  git pull --ff-only origin main && \
+
+  git merge --squash -X theirs "$FEATURE_BRANCH" && \
+  git commit -m "${1}" && \
+
+  git push origin main && \
+
+  git branch -D "$FEATURE_BRANCH"
+}; f'
+```
+
 ### GPG Signing
 
 ```
