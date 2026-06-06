@@ -41,4 +41,19 @@ export TMUX_COLOR_THEME="colour200"
 # ==========
 export PATH="$HOME/.local/bin:$PATH"
 
+# ==========
+# Helpers
+# ==========
 
+# Amazon reconcilation script
+# Usage: reconcile -amazon ~/Downloads/amazon.pdf -bank ~/Downloads/billing.csv -output ~/Downloads/flagged.csv
+alias reconcile="$HOME/Development/amazon-recon/reconcile"
+
+# Path for agentic workspace
+export DEV_WORKSPACE="$HOME/Development/personal/workspace"
+
+# Path for personal repos
+export DEV_PERSONAL="$HOME/Development/personal"
+
+# Path for general dev
+export DEV_GENERAL="$HOME/Development"
